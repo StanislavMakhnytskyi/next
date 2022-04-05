@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import ComponentWithWorker from '../components/component-with-worker';
 
 const Home: NextPage = () => {
   return (
@@ -47,6 +48,11 @@ const Home: NextPage = () => {
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
+          </a>
+
+          <a href="https://github.com/alewin/useWorker" className={styles.card}>
+            <h2>Add workers with no webpack config &rarr;</h2>
+            <p>Use web workers with react hook</p>
           </a>
         </div>
       </main>
