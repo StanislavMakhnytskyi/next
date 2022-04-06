@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Counter from '../features/counter/counter';
+import Concurrency from '../features/concurrency/concurrency';
 
 const Home: NextPage = () => {
   return (
@@ -19,6 +20,9 @@ const Home: NextPage = () => {
         </h1>
         <h2>Counter component:</h2>
         <Counter />
+        =========================
+        <h2>Concurrency component:</h2>
+        <Concurrency />
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
