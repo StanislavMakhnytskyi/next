@@ -1,4 +1,4 @@
-import { from, Observable, of, take } from 'rxjs';
+import { from, fromEvent, Observable, of, take } from 'rxjs';
 
 export default () => {
   _handmade();
@@ -6,6 +6,7 @@ export default () => {
   _fromArray();
   _fromPromise();
   _fromGenerator();
+  _fromEvent();
 };
 
 function _handmade(): void {
@@ -53,4 +54,12 @@ function _fromGenerator(): void {
   const result = from(iterator).pipe(take(10));
 
   result.subscribe((x) => console.log(x));
+}
+
+function _fromEvent(): void {
+  const triggerButton = document.querySelector('.unique-button-classname');
+
+  fromEvent<MouseEvent>(triggerButton, 'click').subscribe((event) =>
+    console.log(event.type, event.x, event.y)
+  );
 }
