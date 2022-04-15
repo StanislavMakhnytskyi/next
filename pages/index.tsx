@@ -5,6 +5,10 @@ import styles from '../styles/Home.module.css';
 import Counter from '../features/counter/counter';
 import Concurrency from '../features/concurrency/concurrency';
 
+import F from '../rxjs';
+
+F();
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
