@@ -12,11 +12,13 @@ import {
 
 import styles from './styles.module.css';
 import { usePrevious } from '../../hooks/use-previous/use-previous';
+import { useInitialRender } from '../../hooks/use-first-render/use-initial-render';
 
 function Counter() {
   const dispatch = useAppDispatch();
   const count = useAppSelector(selectCount);
   const prevCount = usePrevious(count);
+  const initialRender = useInitialRender();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
@@ -30,6 +32,9 @@ function Counter() {
         >
           -
         </button>
+        <span className={styles.value}>
+          {initialRender && 'Initial render'}
+        </span>
         <span className={styles.value}>{count}</span>
         <span className={styles.value}>(prev: {prevCount})</span>
         <button
