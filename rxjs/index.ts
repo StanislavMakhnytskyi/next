@@ -1,12 +1,13 @@
-import { from, fromEvent, Observable, of, take } from 'rxjs';
+import { from, fromEvent, Observable, of, take, forkJoin, timer } from 'rxjs';
 
 export default () => {
-  _handmade();
-  _of();
-  _fromArray();
-  _fromPromise();
-  _fromGenerator();
-  _fromEvent();
+  // _handmade();
+  // _of();
+  // _fromArray();
+  // _fromPromise();
+  // _fromGenerator();
+  // _fromEvent();
+  _formJoin();
 };
 
 function _handmade(): void {
@@ -62,4 +63,16 @@ function _fromEvent(): void {
   fromEvent<MouseEvent>(triggerButton, 'click').subscribe((event) =>
     console.log(event.type, event.x, event.y)
   );
+}
+
+function _formJoin() {
+  const observable = forkJoin<any>({
+    foo: of(1, 2, 3),
+    bar: Promise.resolve(8),
+    baz: timer(4000),
+  });
+  observable.subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log('Completed!'),
+  });
 }
