@@ -1,3 +1,5 @@
+#RxJS 7 and Observables from udemy.com courses, touch next.js framework, apply react optimisation, touch react@18 features
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
