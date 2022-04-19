@@ -7,8 +7,9 @@ import Concurrency from '../features/concurrency/concurrency';
 
 import F from '../rxjs';
 
-F();
-
+if (process.browser) {
+  F();
+}
 const Rxjs: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -20,6 +21,7 @@ const Rxjs: NextPage = () => {
       <main className={styles.main}>
         <h2>rxjs</h2>
         <button className="unique-button-classname">Click me</button>
+        <input id="slider" type="range" min="0" max="100" />
       </main>
     </div>
   );

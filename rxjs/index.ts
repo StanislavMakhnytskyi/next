@@ -6,11 +6,12 @@ import {
   take,
   forkJoin,
   timer,
-  map,
   tap,
   filter,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
+
+import { debounceTime, map } from 'rxjs/operators';
 
 export default () => {
   // _handmade();
@@ -21,7 +22,8 @@ export default () => {
   // _fromEvent();
   // _formJoin();
   // _map();
-  _tap();
+  // _tap();
+  _debounceTime();
 };
 
 function _handmade(): void {
@@ -121,4 +123,15 @@ function _tap() {
       })
     )
     .subscribe((value) => console.log('Output:', value));
+}
+
+function _debounceTime() {
+  const sliderInput = document.querySelector('#slider');
+
+  fromEvent<InputEvent>(sliderInput, 'input')
+    .pipe(
+      debounceTime(500),
+      map((event) => event.target['value'])
+    )
+    .subscribe((value) => console.log(value));
 }
