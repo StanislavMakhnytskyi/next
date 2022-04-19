@@ -7,6 +7,8 @@ import {
   forkJoin,
   timer,
   map,
+  tap,
+  filter,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
@@ -18,7 +20,8 @@ export default () => {
   // _fromGenerator();
   // _fromEvent();
   // _formJoin();
-  _map();
+  // _map();
+  _tap();
 };
 
 function _handmade(): void {
@@ -106,4 +109,16 @@ function _map() {
     ([firstName, capital, dish]) =>
       console.log(`${firstName} is from ${capital} and likes to eat ${dish}.`)
   );
+}
+
+function _tap() {
+  of(1, 7, 3, 6, 2)
+    .pipe(
+      filter((value) => value > 5),
+      map((value) => value * 2),
+      tap({
+        next: (value) => console.log('Spy:', value),
+      })
+    )
+    .subscribe((value) => console.log('Output:', value));
 }
