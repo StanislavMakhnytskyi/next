@@ -1,4 +1,14 @@
-import { from, fromEvent, Observable, of, take, forkJoin, timer } from 'rxjs';
+import {
+  from,
+  fromEvent,
+  Observable,
+  of,
+  take,
+  forkJoin,
+  timer,
+  map,
+} from 'rxjs';
+import { ajax } from 'rxjs/ajax';
 
 export default () => {
   // _handmade();
@@ -7,7 +17,8 @@ export default () => {
   // _fromPromise();
   // _fromGenerator();
   // _fromEvent();
-  _formJoin();
+  // _formJoin();
+  _map();
 };
 
 function _handmade(): void {
@@ -75,4 +86,24 @@ function _formJoin() {
     next: (value) => console.log(value),
     complete: () => console.log('Completed!'),
   });
+}
+
+function _map() {
+  const API_BASE_URL = 'https://random-data-api.com';
+  const randomFirstName$ = ajax<any>(
+    `${API_BASE_URL}/api/name/random_name`
+  ).pipe(map((ajaxResponse) => ajaxResponse.response.first_name));
+
+  const randomCapital$ = ajax<any>(
+    `${API_BASE_URL}/api/nation/random_nation`
+  ).pipe(map((ajaxResponse) => ajaxResponse.response.capital));
+
+  const randomDish$ = ajax<any>(`${API_BASE_URL}/api/food/random_food`).pipe(
+    map((ajaxResponse) => ajaxResponse.response.dish)
+  );
+
+  forkJoin([randomFirstName$, randomCapital$, randomDish$]).subscribe(
+    ([firstName, capital, dish]) =>
+      console.log(`${firstName} is from ${capital} and likes to eat ${dish}.`)
+  );
 }
