@@ -25,7 +25,8 @@ export default () => {
   // _tap();
   // _debounceTime();
   // _catchError();
-  _concatMap();
+  // _concatMap();
+  _catchErrorFlattening();
 };
 
 function _handmade(): void {
@@ -163,4 +164,25 @@ function _concatMap() {
   source$
     .pipe(concatMap((value) => of(1, 2, value)))
     .subscribe((value) => console.log(value));
+}
+
+function _catchErrorFlattening() {
+  const endpointInput: HTMLInputElement =
+    document.querySelector('input#endpoint');
+  const fetchButton = document.querySelector('button#fetch');
+
+  fromEvent(fetchButton, 'click')
+    .pipe(
+      map(() => endpointInput.value),
+      concatMap((value) =>
+        ajax(`https://random-data-api.com/api/${value}/random_${value}`).pipe(
+          catchError((error) => of(`Could not fetch data: ${error}`))
+        )
+      )
+    )
+    .subscribe({
+      next: (value) => console.log(value),
+      error: (err) => console.log('Error:', err),
+      complete: () => console.log('Completed'),
+    });
 }

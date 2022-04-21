@@ -22,6 +22,9 @@ const Rxjs: NextPage = () => {
         <h2>rxjs</h2>
         <button className="unique-button-classname">Click me</button>
         <input id="slider" type="range" min="0" max="100" />
+        <hr />
+        <input type="text" id="endpoint" />
+        <button id="fetch">Fetch</button>
       </main>
     </div>
   );
