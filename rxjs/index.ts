@@ -11,7 +11,7 @@ import {
   EMPTY,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { debounceTime, map, catchError } from 'rxjs/operators';
+import { debounceTime, map, catchError, concatMap } from 'rxjs/operators';
 
 export default () => {
   // _handmade();
@@ -24,7 +24,8 @@ export default () => {
   // _map();
   // _tap();
   // _debounceTime();
-  _catchError();
+  // _catchError();
+  _concatMap();
 };
 
 function _handmade(): void {
@@ -150,4 +151,16 @@ function _catchError() {
     next: (value) => console.log(value),
     complete: () => console.log('Completed'),
   });
+}
+
+function _concatMap() {
+  const source$ = new Observable((subscriber) => {
+    setTimeout(() => subscriber.next('A'), 2000);
+    setTimeout(() => subscriber.next('B'), 5000);
+  });
+
+  console.log('App has started');
+  source$
+    .pipe(concatMap((value) => of(1, 2, value)))
+    .subscribe((value) => console.log(value));
 }
