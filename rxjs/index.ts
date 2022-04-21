@@ -8,10 +8,10 @@ import {
   timer,
   tap,
   filter,
+  EMPTY,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-
-import { debounceTime, map } from 'rxjs/operators';
+import { debounceTime, map, catchError } from 'rxjs/operators';
 
 export default () => {
   // _handmade();
@@ -23,7 +23,8 @@ export default () => {
   // _formJoin();
   // _map();
   // _tap();
-  _debounceTime();
+  // _debounceTime();
+  _catchError();
 };
 
 function _handmade(): void {
@@ -134,4 +135,19 @@ function _debounceTime() {
       map((event) => event.target['value'])
     )
     .subscribe((value) => console.log(value));
+}
+
+function _catchError() {
+  const failingHttpRequest$ = new Observable((subscriber) => {
+    setTimeout(() => {
+      subscriber.error(new Error('Timeout'));
+    }, 3000);
+  });
+
+  console.log('App started');
+
+  failingHttpRequest$.pipe(catchError((error) => EMPTY)).subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log('Completed'),
+  });
 }
