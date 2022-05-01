@@ -33,4 +33,18 @@ export class LinkedList {
 
     return this;
   }
+
+  unshift(value: any) {
+    const newNode = new LinkedListNode(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+
+    return this;
+  }
 }
