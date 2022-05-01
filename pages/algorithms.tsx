@@ -24,12 +24,21 @@ const Algorithms: NextPage = () => {
       <main className={styles.main}>
         {linkedList && <ReactJson src={linkedList} />}
 
-        <button
-          className={styles.button}
-          onClick={() => setLinkedList(new LinkedList(1))}
-        >
-          Create Linked List
-        </button>
+        {!linkedList ? (
+          <button
+            className={styles.button}
+            onClick={() => setLinkedList(new LinkedList(1))}
+          >
+            Create Linked List
+          </button>
+        ) : (
+          <button
+            className={styles.button}
+            onClick={() => setLinkedList((linkedList) => linkedList.push(2))}
+          >
+            Push to Linked List
+          </button>
+        )}
       </main>
     </div>
   );
