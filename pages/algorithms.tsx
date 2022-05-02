@@ -42,6 +42,12 @@ const Algorithms: NextPage = () => {
             <button className={styles.button} onClick={() => linkedList.pop()}>
               Pop from Linked List
             </button>
+            <button
+              className={styles.button}
+              onClick={() => linkedList.shift()}
+            >
+              Shift from Linked List
+            </button>
           </>
         )}
       </main>

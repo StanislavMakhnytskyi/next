@@ -72,4 +72,18 @@ export class LinkedList {
 
     return this;
   }
+
+  public shift() {
+    let shifted = this.head;
+
+    if (!this.head) {
+      return undefined;
+    }
+
+    this.head = this.head.next;
+    this.tail = this.head ? this.tail : this.head;
+    this.length--;
+
+    return shifted;
+  }
 }
