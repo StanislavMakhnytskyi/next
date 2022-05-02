@@ -32,12 +32,17 @@ const Algorithms: NextPage = () => {
             Create Linked List
           </button>
         ) : (
-          <button
-            className={styles.button}
-            onClick={() => setLinkedList((linkedList) => linkedList.push(2))}
-          >
-            Push to Linked List
-          </button>
+          <>
+            <button
+              className={styles.button}
+              onClick={() => setLinkedList((linkedList) => linkedList.push(2))}
+            >
+              Push to Linked List
+            </button>
+            <button className={styles.button} onClick={() => linkedList.pop()}>
+              Pop from Linked List
+            </button>
+          </>
         )}
       </main>
     </div>

@@ -20,7 +20,7 @@ export class LinkedList {
     return this;
   }
 
-  push(value: any) {
+  public push(value: any): this {
     const newNode = new LinkedListNode(value);
     if (!this.head) {
       this.head = newNode;
@@ -34,7 +34,32 @@ export class LinkedList {
     return this;
   }
 
-  unshift(value: any) {
+  public pop(): Node {
+    if (!this.head) {
+      return undefined;
+    }
+
+    let temp = this.head;
+    let pre = this.head;
+
+    while (temp.next) {
+      pre = temp;
+      temp = temp.next;
+    }
+
+    this.tail = pre;
+    this.tail.next = null;
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return;
+  }
+
+  public unshift(value: any): this {
     const newNode = new LinkedListNode(value);
     if (!this.head) {
       this.head = newNode;

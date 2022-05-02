@@ -1,6 +1,6 @@
 export interface LinkedListNode {
   value: any;
-  next: object | null;
+  next: LinkedListNode | null;
 }
 
 export class LinkedListNode {
