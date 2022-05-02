@@ -34,7 +34,7 @@ export class LinkedList {
     return this;
   }
 
-  public pop(): Node {
+  public pop(): LinkedListNode {
     if (!this.head) {
       return undefined;
     }
@@ -56,7 +56,7 @@ export class LinkedList {
       this.tail = null;
     }
 
-    return;
+    return temp;
   }
 
   public unshift(value: any): this {
