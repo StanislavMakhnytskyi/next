@@ -8,6 +8,9 @@ import { LinkedList } from '../features/algorithms/LinkedList';
 
 const Algorithms: NextPage = () => {
   const [linkedList, setLinkedList] = useState(null);
+  const [push, setPush] = useState('');
+  const [unshift, setUnshift] = useState('');
+
   return (
     <div className={styles.container}>
       <Head>
@@ -32,23 +35,50 @@ const Algorithms: NextPage = () => {
             Create Linked List
           </button>
         ) : (
-          <>
+          <div className={styles.controls}>
+            <input
+              className={styles.input}
+              type="text"
+              value={push}
+              onChange={(e) => setPush(e.target.value)}
+            />
             <button
               className={styles.button}
-              onClick={() => setLinkedList((linkedList) => linkedList.push(2))}
+              onClick={() => {
+                linkedList.push(push);
+                setLinkedList((linkedList) => linkedList);
+              }}
             >
               Push to Linked List
             </button>
+
+            <input
+              className={styles.input}
+              type="text"
+              value={unshift}
+              onChange={(e) => setUnshift(e.target.value)}
+            />
+            <button
+              className={styles.button}
+              onClick={() => {
+                linkedList.unshift(unshift);
+                setLinkedList((linkedList) => linkedList);
+              }}
+            >
+              Unshift to Linked List
+            </button>
+
             <button className={styles.button} onClick={() => linkedList.pop()}>
               Pop from Linked List
             </button>
+
             <button
               className={styles.button}
               onClick={() => linkedList.shift()}
             >
               Shift from Linked List
             </button>
-          </>
+          </div>
         )}
       </main>
     </div>
