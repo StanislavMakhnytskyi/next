@@ -86,4 +86,17 @@ export class LinkedList {
 
     return shifted;
   }
+
+  public get(index: number): LinkedListNode {
+    let node = this.head;
+    try {
+      while (index > 0) {
+        node = node.next;
+        index--;
+      }
+      return node;
+    } catch (e) {
+      return undefined;
+    }
+  }
 }
