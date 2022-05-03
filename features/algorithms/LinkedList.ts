@@ -100,4 +100,15 @@ export class LinkedList {
 
     return node;
   }
+
+  public set(index: number, value: any): boolean {
+    const node = this.get(index);
+    if (node) {
+      node.value = value;
+
+      return true;
+    }
+
+    return false;
+  }
 }
