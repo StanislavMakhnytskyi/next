@@ -111,4 +111,31 @@ export class LinkedList {
 
     return false;
   }
+
+  public insert(index: number, value: any): boolean {
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+
+    if (index === 0) {
+      this.unshift(value);
+
+      return true;
+    }
+
+    if (index === this.length) {
+      this.unshift(value);
+
+      return true;
+    }
+
+    const newNode = new LinkedListNode(value);
+    const temp = this.get(index - 1);
+
+    newNode.next = temp.next;
+    temp.next = newNode;
+    this.length++;
+
+    return true;
+  }
 }
