@@ -138,4 +138,28 @@ export class LinkedList {
 
     return true;
   }
+
+  public remove(index): boolean {
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+
+    if (index === 0) {
+      this.shift();
+
+      return true;
+    }
+
+    if (index === this.length - 1) {
+      this.pop();
+
+      return true;
+    }
+
+    const node = this.get(index);
+    const before = this.get(index - 1);
+    before.next = node.next;
+
+    return true;
+  }
 }
