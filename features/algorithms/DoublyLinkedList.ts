@@ -19,4 +19,20 @@ export class DoublyLinkedList {
 
     return this;
   }
+
+  public push(value: any): this {
+    const node = new DoublyLinkedListNode(value);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      node.prev = this.tail;
+      this.tail = node;
+    }
+    this.length++;
+
+    return this;
+  }
 }
