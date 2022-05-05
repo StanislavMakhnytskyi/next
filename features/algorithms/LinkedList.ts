@@ -162,4 +162,21 @@ export class LinkedList {
 
     return true;
   }
+
+  public reverse(): this {
+    let previous = null;
+    let current = this.head;
+    let following = this.head;
+    this.head = this.tail;
+    this.tail = current;
+
+    while (current !== null) {
+      following = following.next;
+      current.next = previous;
+      previous = current;
+      current = following;
+    }
+
+    return this;
+  }
 }
