@@ -23,7 +23,7 @@ export class DoublyLinkedList {
   public push(value: any): this {
     const node = new DoublyLinkedListNode(value);
 
-    if (!this.head) {
+    if (this.length === 0) {
       this.head = node;
       this.tail = node;
     } else {
@@ -52,5 +52,20 @@ export class DoublyLinkedList {
     this.length--;
 
     return node;
+  }
+
+  public unshift(value: any): this {
+    const node = new DoublyLinkedListNode(value);
+
+    if (this.length === 0) {
+      this.tail = node;
+    } else {
+      this.head.prev = node;
+      node.next = node;
+    }
+    this.head = node;
+    this.length++;
+
+    return this;
   }
 }
