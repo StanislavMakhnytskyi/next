@@ -78,12 +78,32 @@ export class DoublyLinkedList implements DoublyLinkedList {
       this.head = null;
       this.tail = null;
     } else {
-      // @ts-ignore
       this.head = this.head.next;
       this.head.prev = null;
       head.next = null;
     }
 
     this.length--;
+  }
+
+  public get(index: number): DoublyLinkedListNode {
+    if (index < 0 || index > this.length) return null;
+
+    let node;
+    if (index < this.length / 2) {
+      node = this.head;
+
+      for (let i = 0; i < index; i++) {
+        node = node.next;
+      }
+    } else {
+      node = this.tail;
+
+      for (let i = this.length - 1; i > index; i--) {
+        node = node.prev;
+      }
+    }
+
+    return node;
   }
 }

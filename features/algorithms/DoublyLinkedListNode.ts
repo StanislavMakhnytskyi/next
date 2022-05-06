@@ -1,12 +1,13 @@
-import { LinkedListNode } from './LinkedListNode';
-
-export interface DoublyLinkedListNode extends LinkedListNode {
+export interface DoublyLinkedListNode {
+  value: any;
+  next: DoublyLinkedListNode | null;
   prev: DoublyLinkedListNode | null;
 }
 
-export class DoublyLinkedListNode extends LinkedListNode {
+export class DoublyLinkedListNode {
   constructor(value: any) {
-    super(value);
+    this.value = value;
     this.prev = null;
+    this.next = null;
   }
 }
