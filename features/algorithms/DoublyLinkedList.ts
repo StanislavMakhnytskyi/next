@@ -6,7 +6,7 @@ export interface DoublyLinkedList {
   length: number;
 }
 
-export class DoublyLinkedList {
+export class DoublyLinkedList implements DoublyLinkedList {
   constructor(value?: any) {
     if (value) {
       this.head = new DoublyLinkedListNode(value);
@@ -67,5 +67,23 @@ export class DoublyLinkedList {
     this.length++;
 
     return this;
+  }
+
+  public shift(): DoublyLinkedListNode {
+    if (this.length === 0) {
+      return undefined;
+    }
+    let head = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      // @ts-ignore
+      this.head = this.head.next;
+      this.head.prev = null;
+      head.next = null;
+    }
+
+    this.length--;
   }
 }
