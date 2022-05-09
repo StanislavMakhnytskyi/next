@@ -106,4 +106,18 @@ export class DoublyLinkedList implements DoublyLinkedList {
 
     return node;
   }
+
+  public set(index: number, value: any): boolean {
+    if (index < 0 || index > this.length) {
+      return undefined;
+    }
+
+    let node = this.get(index);
+
+    if (node) {
+      node.value = value;
+    }
+
+    return !!node;
+  }
 }
