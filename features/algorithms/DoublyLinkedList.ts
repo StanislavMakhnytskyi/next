@@ -109,7 +109,7 @@ export class DoublyLinkedList implements DoublyLinkedList {
 
   public set(index: number, value: any): boolean {
     if (index < 0 || index > this.length) {
-      return undefined;
+      return false;
     }
 
     let node = this.get(index);
@@ -119,5 +119,28 @@ export class DoublyLinkedList implements DoublyLinkedList {
     }
 
     return !!node;
+  }
+
+  public insert(index: number, value: any): boolean {
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+    if (index === 0) {
+      this.unshift(value);
+    }
+    if (index === this.length) {
+      this.push(value);
+    }
+
+    const node = new DoublyLinkedListNode(value);
+    const before = this.get(index - 1);
+    const after = before.next;
+    before.next = node;
+    after.prev = node;
+    node.prev = before;
+    node.next = after;
+    this.length++;
+
+    return true;
   }
 }
