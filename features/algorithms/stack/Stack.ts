@@ -25,4 +25,17 @@ export class Stack {
 
     return this;
   }
+
+  public pop(): StackNode {
+    if (this.length === 0) {
+      return undefined;
+    }
+
+    const node = this.top;
+    this.top = node.next;
+    node.next = null;
+    this.length--;
+
+    return node;
+  }
 }
