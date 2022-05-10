@@ -4,7 +4,7 @@ import Head from 'next/head';
 import loadable from '@loadable/component';
 const ReactJson = loadable(() => import('react-json-view'));
 import styles from '../styles/Home.module.css';
-import { LinkedList } from '../features/algorithms/LinkedList';
+import { LinkedList } from '../features/algorithms/linkedList/LinkedList';
 
 const Algorithms: NextPage = () => {
   const [linkedList, setLinkedList] = useState(null);
