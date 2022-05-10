@@ -15,4 +15,14 @@ export class Stack {
       this.length = 0;
     }
   }
+
+  public push(value: any): this {
+    const node = new StackNode(value);
+
+    node.next = this.top;
+    this.top = node;
+    this.length++;
+
+    return this;
+  }
 }
