@@ -14,7 +14,7 @@ export class Queue {
     this.length = 1;
   }
 
-  enqueue(value: any): this {
+  public enqueue(value: any): this {
     const node = new QueueNode(value);
 
     if (this.length === 0) {
@@ -25,5 +25,22 @@ export class Queue {
     this.length++;
 
     return this;
+  }
+
+  public dequeue(): QueueNode {
+    if (this.length === 0) {
+      return undefined;
+    }
+    const node = this.first;
+    if (this.length === 1) {
+      this.first = null;
+      this.last = null;
+    }
+    if (this.length > 1) {
+      this.first = this.first.next;
+    }
+    this.length--;
+
+    return node;
   }
 }
