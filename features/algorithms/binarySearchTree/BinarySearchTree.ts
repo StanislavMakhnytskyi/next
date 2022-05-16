@@ -35,4 +35,22 @@ export class BinarySearchTree {
       }
     }
   };
+
+  public contains(value: any): boolean {
+    if (this.root === null) return false;
+
+    let temp = this.root;
+    while (temp) {
+      if (value < temp.value) {
+        temp = temp.left;
+      } else if (value > temp.value) {
+        temp = temp.right;
+      } else {
+        return true;
+      }
+      if (this.root.value === value) return true;
+    }
+
+    return false;
+  }
 }
