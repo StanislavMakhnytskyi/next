@@ -25,7 +25,7 @@ export class HashTable {
     return this;
   }
 
-  public get(key) {
+  public get(key): any {
     let index = this.hash(key);
 
     if (this.dataMap[index]) {
@@ -37,5 +37,19 @@ export class HashTable {
     }
 
     return undefined;
+  }
+
+  public keys(): any[] {
+    const allKeys = [];
+
+    for (let i = 0; i < this.dataMap.length; i++) {
+      if (this.dataMap[i]) {
+        for (let j = 0; j < this.dataMap[i].length; j++) {
+          allKeys.push(this.dataMap[i][j][0]);
+        }
+      }
+    }
+
+    return allKeys;
   }
 }
